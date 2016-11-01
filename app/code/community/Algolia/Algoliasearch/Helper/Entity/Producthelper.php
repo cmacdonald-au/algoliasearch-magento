@@ -629,6 +629,16 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
     public function getObject(Mage_Catalog_Model_Product $product)
     {
         $type = $this->config->getMappedProductType($product->getTypeId());
+
+        $type_rank = 4;
+        if ($type == 'simple') {
+            $type_rank = 1;
+        } else if ($type == 'configurable') {
+            $type_rank = 2;
+        } else {
+            $type_rank = 3;
+        }
+
         $this->logger->start('CREATE RECORD '.$product->getId().' '.$this->logger->getStoreName($product->storeId));
         $this->logger->log('Product type ('.$product->getTypeId().', mapped to: '.$type.')');
         $defaultData = array();
