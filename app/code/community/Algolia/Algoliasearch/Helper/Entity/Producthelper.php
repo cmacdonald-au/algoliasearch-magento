@@ -635,8 +635,10 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
             $type_rank = 1;
         } else if ($type == 'configurable') {
             $type_rank = 2;
-        } else {
+        } else if ($type == 'bundle')  {
             $type_rank = 3;
+        } else {
+            $type_rank = 4;
         }
 
         $this->logger->start('CREATE RECORD '.$product->getId().' '.$this->logger->getStoreName($product->storeId));
